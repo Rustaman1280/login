@@ -1,43 +1,42 @@
-// Mendapatkan elemen HTML
+// Get the form elements.
 const form = document.getElementById('loginForm');
 const username = document.getElementById('username');
 const password = document.getElementById('password');
 const errorMessage = document.getElementById('error-message');
-const loginButton = document.getElementById('loginButton');
+const togglePassword = document.getElementById('togglePassword');
 
-// Function untuk validasi
+// Validate the form before showing the demo success message.
 function validateForm(event) {
-    event.preventDefault(); // Mencegah form dikirim sebelum validasi
-    if (username.value === "" || password.value === "") {
-        // Tampilkan pesan error
-        errorMessage.style.display = "block";
-        errorMessage.style.color = "red";
-        errorMessage.innerText = "Please fill in both fields!";
-    } else {
-        // Jika valid, tampilkan pesan sukses atau redirect ke halaman lain
-        errorMessage.style.display = "none";
-        alert("Login successful!"); // Kamu bisa mengganti ini dengan logic lain, seperti redirect
+    event.preventDefault();
+
+    if (username.value.trim() === '' || password.value === '') {
+        errorMessage.style.display = 'block';
+        errorMessage.style.color = 'red';
+        errorMessage.innerText = 'Please fill in both fields!';
+        return;
     }
+
+    errorMessage.style.display = 'none';
+    alert('Login successful!'); // Replace with authentication when a backend is available.
 }
 
-// Event listener untuk validasi saat klik tombol login
 form.addEventListener('submit', validateForm);
 
-// Animasi untuk input fields saat di klik
-username.addEventListener('focus', () => {
-    username.style.transform = "scale(1.05)";
-    username.style.transition = "transform 0.3s ease";
+togglePassword.addEventListener('click', () => {
+    const shouldShowPassword = password.type === 'password';
+    password.type = shouldShowPassword ? 'text' : 'password';
+    togglePassword.textContent = shouldShowPassword ? 'Hide password' : 'Show password';
+    togglePassword.setAttribute('aria-pressed', String(shouldShowPassword));
 });
 
-username.addEventListener('blur', () => {
-    username.style.transform = "scale(1)";
-});
+// Animate the inputs on focus.
+for (const input of [username, password]) {
+    input.addEventListener('focus', () => {
+        input.style.transform = 'scale(1.05)';
+        input.style.transition = 'transform 0.3s ease';
+    });
 
-password.addEventListener('focus', () => {
-    password.style.transform = "scale(1.05)";
-    password.style.transition = "transform 0.3s ease";
-});
-
-password.addEventListener('blur', () => {
-    password.style.transform = "scale(1)";
-});
+    input.addEventListener('blur', () => {
+        input.style.transform = 'scale(1)';
+    });
+}

@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,15 +11,17 @@
         <div class="glass-effect">
             <h2>Login</h2>
             <form id="loginForm">
-                <input type="text" id="username" placeholder="Username" required>
-                <input type="password" id="password" placeholder="Password" required>
+                <label class="visually-hidden" for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Username" autocomplete="username" required>
+                <label class="visually-hidden" for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Password" autocomplete="current-password" required>
+                <button class="password-toggle" type="button" id="togglePassword" aria-controls="password" aria-pressed="false">Show password</button>
                 <button type="submit" id="loginButton">Login</button>
             </form>
-            <p id="error-message" style="display: none;">Please fill in both fields!</p>
+            <p id="error-message" style="display: none;" role="alert">Please fill in both fields!</p>
         </div>
     </div>
 
-    <!-- Hubungkan file JavaScript eksternal -->
     <script src="script.js"></script>
 </body>
 </html>

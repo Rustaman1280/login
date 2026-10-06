@@ -71,3 +71,30 @@ body {
 .glass-effect button:hover {
     background-color: rgba(255, 255, 255, 0.3);
 }
+
+.glass-effect .password-toggle {
+    width: auto;
+    margin: -4px 0 8px auto;
+    padding: 4px 0;
+    display: block;
+    background: transparent;
+    text-align: right;
+    font-size: 0.9rem;
+}
+
+.glass-effect .password-toggle:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
